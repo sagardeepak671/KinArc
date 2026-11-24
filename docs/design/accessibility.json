@@ -1,0 +1,112 @@
+[
+  {
+    "theme": "light",
+    "route": "landing",
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "home",
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "library",
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "workbench",
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "journal",
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "plan",
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "progress",
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "coach",
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "settings",
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "profiles",
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "help",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "landing",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "home",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "library",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "workbench",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "journal",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "plan",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "progress",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "coach",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "settings",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "profiles",
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "help",
+    "violations": []
+  }
+]

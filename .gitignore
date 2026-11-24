@@ -1,0 +1,17 @@
+.venv/
+models/
+__pycache__/
+
+node_modules/
+.DS_Store
+*.log
+ios/App/App/public/
+ios/App/App/capacitor.config.json
+.firebase/
+playwright-report/
+emulator-browser-report/
+test-results/
+.env
+.env.*
+!.env.example
+*.zip

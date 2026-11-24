@@ -1,0 +1,4 @@
+import {test,expect} from '@playwright/test';
+test('bundled real MediaPipe initializes and analyzes a no-person video without false reps',async({page})=>{
+ test.setTimeout(90000);const exceptions=[];page.on('pageerror',e=>exceptions.push(e.message));await page.goto('/#home');await page.locator('#onboardingSkip').click();await page.goto('/#workbench');await page.locator('.voice-settings summary').click();await page.locator('#coachVoice').uncheck();await page.locator('#file').setInputFiles('tests/fixtures/movement.mp4');await page.locator('#previewAnalyze').click();await expect(page.locator('#analysisNote')).toContainText('Analysis complete',{timeout:80000});await expect(page.locator('#count')).toHaveText('0 / 5');await expect(page.locator('#finish')).toBeDisabled();expect(exceptions).toEqual([]);
+});

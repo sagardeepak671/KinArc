@@ -1,0 +1,799 @@
+{
+  "results": [
+    {
+      "route": "landing",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 320,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 390,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 768,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 1024,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 1920,
+      "theme": "light",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 320,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 768,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "landing",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "library",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "workbench",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "plan",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "journal",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "progress",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "coach",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "profiles",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    },
+    {
+      "route": "help",
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false
+    }
+  ],
+  "exceptions": [],
+  "failedLocalResources": [],
+  "note": "Automated Chromium screenshot/overflow matrix; visual review documented separately."
+}

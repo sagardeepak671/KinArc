@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {deviceAnswer} from '../src/chat.mjs';
+test('device guide distinguishes supported instructions and medical questions',()=>{assert.match(deviceAnswer('How to do Hammer curl?'),/upper arm/);assert.match(deviceAnswer('Can you diagnose my knee pain?'),/cannot assess/);assert.match(deviceAnswer('Why no reps?'),/starting angle/);assert.match(deviceAnswer('Tell me anything'),/without a generative model/)});

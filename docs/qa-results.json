@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-24",
+  "node": "24.22.3",
+  "unitIntegration": {
+    "passed": 43,
+    "failed": 0
+  },
+  "chromiumE2E": {
+    "passed": 24,
+    "failed": 0
+  },
+  "firestoreRules": {
+    "passed": 2,
+    "failed": 0
+  },
+  "emulatorAccountSync": {
+    "passed": 2,
+    "failed": 0
+  },
+  "liveLocalAI": {
+    "passed": 7,
+    "failed": 0,
+    "verifiedDate": "2026-11-23",
+    "note": "Previous functional-release integration result; local health checked again on 2026-11-24. Backend generation tests not rerun for this visual overhaul."
+  },
+  "dependencyVulnerabilities": 0,
+  "productionCloudEnabled": false,
+  "physicalMovementVerified": false,
+  "buildRevision": "5d0129d17db4",
+  "designOverhaul": {
+    "unitPassed": 43,
+    "browserPassed": 24,
+    "ruleTestsPassed": 2,
+    "accountSyncTestsPassed": 2,
+    "axeScans": 22,
+    "axeViolations": 0,
+    "responsiveWidths": [
+      320,
+      390,
+      768,
+      1024,
+      1440,
+      1920
+    ],
+    "primaryVisualCases": 132,
+    "report": "docs/DESIGN_OVERHAUL.md",
+    "physicalDevicesVerified": false,
+    "productionCloudEnabled": false,
+    "finalPolishCasesPassed": 7
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "kinarc",
+  "version": "1.0.0",
+  "description": "KinArc installable movement web app",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.mjs",
+    "start": "python3 -m http.server 8765 --bind 127.0.0.1 --directory dist",
+    "build:auth": "esbuild scripts/firebase-client.mjs --bundle --format=esm --minify --outfile=dist/vendor/firebase-client.mjs",
+    "dev": "npm run build && python3 -m http.server 8770 --bind 127.0.0.1 --directory dist",
+    "test:unit": "node --test tests/*.mjs",
+    "emulators": "node scripts/emulators.mjs",
+    "test:rules": "node scripts/emulators.mjs --test",
+    "test:e2e": "playwright test",
+    "test:local-ai": ".venv/bin/python -m unittest discover -s tests -p test_local_ai.py -v"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "dependencies": {
+    "firebase": "^13.4.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@firebase/rules-unit-testing": "^6.0.0",
+    "@playwright/test": "^1.65.1",
+    "esbuild": "^0.28.2",
+    "fake-indexeddb": "^6.2.8",
+    "firebase-tools": "^15.37.0"
+  },
+  "overrides": {
+    "@grpc/grpc-js": "^1.14.3",
+    "glob@>=9 <=14.0.1": "^14.0.6",
+    "minimatch@>=7 <11.0.1": "^11.0.9",
+    "uuid@<11.1.1": "^11.1.1",
+    "@opentelemetry/core@<2.8.0": "^2.8.0"
+  },
+  "engines": {
+    "node": ">=22 <25"
+  },
+  "private": true
+}
