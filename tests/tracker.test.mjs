@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {knee,CycleTracker} from '../src/tracker.mjs';
-test('geometry uses pixels, side and landmark confidence',()=>{
+test('geometry uses pixels, supports the opposite side and rejects low confidence',()=>{
  const p=[];for(const [i,x,y] of [[23,.2,.2],[25,.2,.6],[27,.4,.6]])p[i]={x,y,visibility:.97};
- assert.equal(knee(p,'left',640,480).angle,90);assert.equal(knee(p,'right',640,480),null);
+ assert.equal(knee(p,'left',640,480).angle,90);assert.equal(knee(p,'right',640,480).angle,90);
  p[27].visibility=.2;assert.equal(knee(p,'left',640,480),null)
 });
 test('repetitions require sustained endpoints and uninterrupted observation',()=>{
@@ -19,6 +19,15 @@ test('the full pose model ships with a TensorFlow Lite header',async()=>{
  const {readFile}=await import('node:fs/promises');
  const bytes=await readFile(new URL('../public/pose_landmark_full.tflite',import.meta.url));
  assert.equal(bytes.toString('ascii',4,8),'TFL3');assert.ok(bytes.length>1000000)
+});
+
+test('upper and lower body exercises can use partial side visibility',()=>{
+ const p=Array.from({length:33},()=>({x:.5,y:.5,visibility:.99}));
+ p[11]={x:.5,y:.3,visibility:.99};p[15]={x:.5,y:.6,visibility:.99};
+ assert.ok(knee(p,'left',640,480,'Arm raise'));
+ p[11].visibility=.2;p[15].visibility=.2;
+ p[12]={x:.5,y:.3,visibility:.99};p[16]={x:.5,y:.6,visibility:.99};
+ assert.ok(knee(p,'left',640,480,'Arm raise'));
 });
 
 test('coordinated movements require the supporting joint to match the movement',()=>{
@@ -43,7 +52,15 @@ test('all tracked exercises accept both sides, reject low confidence and invalid
  const {exerciseList}=await import('../src/exercises.mjs');
  for(const e of exerciseList){
   let points;
-  for(const side of ['left','right']){points=Array.from({length:33},()=>({x:.5,y:.5,visibility:.99}));const offset=side==='right'?1:0;const positions=e.joints.length===4?[[.2,.1],[.2,.35],[.4,.6],[.4,.9]]:[[.2,.2],[.2,.5],[.5,.5]];e.joints.forEach((i,j)=>points[i+offset]={x:positions[j][0],y:positions[j][1],visibility:.99});const result=knee(points,side,640,480,e.name);assert.ok(result,e.name+' '+side);points[e.joints[0]+offset].visibility=.2;assert.equal(knee(points,side,640,480,e.name),null)}
+  for(const side of ['left','right']){
+   points=Array.from({length:33},()=>({x:.5,y:.5,visibility:.99}));
+   const offset=side==='right'?1:0;
+   const positions=e.joints.length===4?[[.2,.1],[.2,.35],[.4,.6],[.4,.9]]:[[.2,.2],[.2,.5],[.5,.5]];
+   e.joints.forEach((i,j)=>points[i+offset]={x:positions[j][0],y:positions[j][1],visibility:.99});
+   const result=knee(points,side,640,480,e.name);assert.ok(result,e.name+' '+side);
+   e.joints.forEach(i=>{points[i].visibility=.2;points[i+1].visibility=.2});
+   assert.equal(knee(points,side,640,480,e.name),null);
+  }
   assert.equal(knee(points,'left',0,480,e.name),null);
  }
 });

@@ -48,6 +48,7 @@ button,.primary{min-height:44px}
 #start{margin:18px 0 22px}#cameraOptions>label{margin-top:14px}#movementInstructions p{line-height:1.8}#homeDiscovery .public-exercise img{object-fit:contain;background:#e4e8df}
 @media(max-width:999px){.work:has(#active[hidden]) aside{order:-1}.work aside #start{grid-template-columns:1fr 1fr}.work aside #start>.primary{grid-column:1/-1}}
 @media(max-width:550px){.work aside #start{grid-template-columns:1fr}.work aside #start>*{grid-column:1/-1}}
+.camera-instruction{position:absolute;left:14px;right:14px;top:52px;margin:0;background:#ffffffea;color:#202823;padding:8px 10px;border-radius:5px;font-size:13px;line-height:1.35;max-width:min(520px,calc(100% - 28px));pointer-events:none}.monitor-tools #endSession{border-color:#be837a;color:#9d3326;background:transparent}.camera-instruction:empty{display:none}
 .range-chart{display:block;width:100%;min-width:420px;margin:20px 0}.range-chart text{font-family:var(--font)}
 @media print{:root,:root[data-theme=dark]{--paper:#fff;--cream:#fff;--ink:#111;--muted:#444;--rim:#ccc;--sage:#3f7358;--terra:#b9472b}}
 @media(min-width:1500px){.app-footer{width:calc(100% - 340px);max-width:1320px;margin:24px auto;transform:translateX(109px)}}

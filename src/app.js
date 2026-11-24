@@ -37,6 +37,22 @@ function sculpt(points){
     ctx.beginPath();ctx.arc(p.x,p.y,8*scale,0,Math.PI*2);ctx.fillStyle='#ffcc92';ctx.fill()
   }
 }
+function drawFullSkeleton(poseLandmarks,width,height){
+  if(!poseLandmarks)return;
+  ctx.clearRect(0,0,width,height);
+  const points=poseLandmarks.map(p=>p&&p.visibility>=.45&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1?{x:p.x*width,y:p.y*height}:null);
+  const connections=window.POSE_CONNECTIONS||[[11,12],[11,13],[13,15],[12,14],[14,16],[11,23],[12,24],[23,24],[23,25],[25,27],[24,26],[26,28]];
+  ctx.lineCap='round';ctx.lineJoin='round';
+  for(const [a,b] of connections){
+    if(!points[a]||!points[b])continue;
+    ctx.beginPath();ctx.moveTo(points[a].x,points[a].y);ctx.lineTo(points[b].x,points[b].y);
+    ctx.lineWidth=8*width/720;ctx.strokeStyle='#804833';ctx.stroke();
+    ctx.lineWidth=4*width/720;ctx.strokeStyle='#dc9d70';ctx.stroke();
+  }
+  for(const p of points.filter(Boolean)){
+    ctx.beginPath();ctx.arc(p.x,p.y,5*width/720,0,Math.PI*2);ctx.fillStyle='#ffcc92';ctx.fill();
+  }
+}
 function rehearsal(angle){
   document.querySelector('.monitor').style.aspectRatio='16/9';canvas.width=720;canvas.height=405;
   portrait(ctx,$('exercise').value,$('side').value,angle??(baseExercise($('exercise').value)==='Arm raise'?8:168));
@@ -49,10 +65,15 @@ function readout(s){
   $('angle').textContent=s.tracker.angle===null?'—':Math.round(s.tracker.angle)+'°';$('count').textContent=s.tracker.reps+' / '+s.goal;$('setReadout').textContent='Set '+s.workout.set+' / '+s.workout.config.sets;
   const state=s.workout.state;$('workoutState').textContent=state==='countdown'?'Starting in '+s.workout.remaining(performance.now()):state==='rest'?'Rest · '+s.workout.remaining(performance.now())+'s':state==='positioning'?'Position your body and hold steady':state==='complete'?(s.mode==='Video file'?'Analysis complete':'Workout complete'):state==='paused'?'Paused':s.mode==='Video file'?'Analyzing video':'Tracking movement';
 }
-function cue(text){if($('cue').textContent!==text)$('cue').textContent=text}
+function cue(text){
+  if($('cue').textContent!==text)$('cue').textContent=text;
+  if($('cameraInstruction')&&$('cameraInstruction').textContent!==text)$('cameraInstruction').textContent=text;
+}
 function consume(s,result,t){
   if(current!==s||s.closed||s.paused)return;
   const w=video.videoWidth,h=video.videoHeight;canvas.width=w;canvas.height=h;
+  ctx.clearRect(0,0,w,h);
+  if($('skeletonToggle').checked)drawFullSkeleton(result.poseLandmarks,w,h);
   const obs=knee(result.poseLandmarks,s.side,w,h,s.exercise);
   if(s.mode!=='Video file'){s.workout.positioned(!!obs,performance.now());advance(s);if(s.workout.state!=='active'){readout(s);return}}
   if(obs&&s.previousPose&&t-s.previousPose.time<350){const old=s.previousPose.points,dx=obs.pixels.map((p,i)=>p.x-old[i].x),dy=obs.pixels.map((p,i)=>p.y-old[i].y),mx=dx.reduce((a,b)=>a+b,0)/dx.length,my=dy.reduce((a,b)=>a+b,0)/dy.length;if(Math.hypot(mx/w,my/h)>.12&&dx.every((x,i)=>Math.hypot((x-mx)/w,(dy[i]-my)/h)<.04)){s.tracker.resetSignal();s.previousPose={points:obs.pixels,time:t};cue('View moved suddenly. Hold the camera steady and return to the start.');return}}
@@ -63,7 +84,7 @@ function consume(s,result,t){
       joints:result.poseLandmarks?.map((p,i)=>({index:i,x:Math.round(p.x*1000)/1000,y:Math.round(p.y*1000)/1000,visibility:Math.round(p.visibility*100)/100})).filter(p=>[11,12,13,14,15,16,23,24,25,26,27,28].includes(p.index)),
       reps:s.tracker.reps,phase:s.tracker.phase},performance.now());
   $('visibilityState').textContent=obs?'Required joints visible':'Tracking interrupted · show the required joints';
-  if(obs){if($('skeletonToggle').checked)sculpt(obs.pixels);coach(s)}
+  if(obs)coach(s)
   else cue('Tracking paused. Keep all the joints named in the exercise guide visible.');
   readout(s);
 }
@@ -71,6 +92,7 @@ function begin(mode){
   const s={mode,side:$('side').value,exercise:$('exercise').value,goal:Number($('goal').value),tracker:new CycleTracker($('exercise').value,{start:Number($('rangeStart').value),end:Number($('rangeEnd').value)}),started:performance.now(),closed:false};
   s.timeline=[];s.workout=new Workout({sets:mode==='Video file'?1:Number($('sets').value),reps:s.goal,rest:Number($('restSeconds').value)});if(mode==='Video file')s.workout.state='active';
   s.buddy=new WebCoach(s.exercise,s.goal,voice);s.pausedMs=0;$('pauseSession').hidden=false;$('pauseSession').disabled=false;$('pauseSession').textContent='Pause session';
+  $('endSession').hidden=false;
   navigator.wakeLock?.request('screen').then(lock=>{if(s.closed)lock.release();else s.wakeLock=lock}).catch(()=>{});
   $('reflection').value='';current=s;for(const id of ['sets','restSeconds','rangeStart','rangeEnd'])$(id).disabled=true;$('exercise').disabled=$('goal').disabled=true;$('start').hidden=true;$('active').hidden=false;$('side').disabled=true;$('coachMode').disabled=$('cameraFacing').disabled=true;$('finish').disabled=true;$('badge').textContent=mode;readout(s);requestAnimationFrame(()=>{if(current===s)document.querySelector('.surface').scrollIntoView({block:'start',behavior:'smooth'})});return s;
 }
@@ -82,7 +104,7 @@ function release(s){
   Promise.resolve(s.pending).catch(()=>{}).then(()=>s.pose?.close()).catch(()=>{});
 }
 function end(s){
-  if(current!==s)return;release(s);current=null;for(const id of ['sets','restSeconds','rangeStart','rangeEnd'])$(id).disabled=false;$('exercise').disabled=$('goal').disabled=false;$('active').hidden=true;$('start').hidden=false;$('side').disabled=false;$('coachMode').disabled=$('cameraFacing').disabled=false;$('badge').textContent='Ready';$('pauseSession').hidden=true;rehearsal();
+  if(current!==s)return;release(s);current=null;for(const id of ['sets','restSeconds','rangeStart','rangeEnd'])$(id).disabled=false;$('exercise').disabled=$('goal').disabled=false;$('active').hidden=true;$('start').hidden=false;$('side').disabled=false;$('coachMode').disabled=$('cameraFacing').disabled=false;$('badge').textContent='Ready';$('pauseSession').hidden=true;$('endSession').hidden=true;if($('cameraInstruction'))$('cameraInstruction').textContent='Choose a source to begin.';rehearsal();
 }
 async function startVision(file){
   if(current)return;
@@ -105,7 +127,7 @@ async function startVision(file){
     const response=await fetch(modelURL);if(!response.ok)throw Error('The bundled pose model is missing.');
     if(s.closed)return;
     s.pose=new Pose({locateFile:f=>new URL(f,document.baseURI).href});
-    s.pose.setOptions({modelComplexity:1,smoothLandmarks:true});
+    s.pose.setOptions({modelComplexity:1,smoothLandmarks:true,minDetectionConfidence:.35,minTrackingConfidence:.35});
     s.pose.onResults(r=>consume(s,r,s.sampleTime));
     s.sampleTime=video.currentTime*1000;
     s.pending=s.pose.send({image:video});await s.pending;if(s.closed)return;
@@ -142,6 +164,8 @@ $('camera').onclick=()=>startVision();$('upload').onclick=()=>$('file').click();
 
 $('pauseSession').onclick=async()=>{const s=current;if(!s)return;if(s.paused){s.pausedMs+=performance.now()-s.pauseStarted;s.paused=false;s.workout.resume(performance.now());s.tracker.resetSignal();s.buddy=new WebCoach(s.exercise,s.goal,voice);try{if(s.mode==='Camera')await video.play();if(s.mode==='Video file'){video.pause();s.workout.state='active'}}catch{end(s);cue('Playback could not resume. Start a new session.');return}$('pauseSession').textContent='Pause session'}else{s.paused=true;s.pauseStarted=performance.now();s.workout.pause(s.pauseStarted);s.buddy.stop();video.pause();$('pauseSession').textContent='Resume session'}readout(s)};
 $('cancel').onclick=async()=>{if(current&&current.tracker.reps>0&&!await ask('Discard session?','Your unsaved repetitions will be lost.',{confirm:'Discard',danger:true}))return;if(current)end(current);cue('Session discarded. Choose a source to begin again.')};
+$('endSession').onclick=()=>$('cancel').click();
+$('skeletonToggle').onchange=()=>{if(!$('skeletonToggle').checked){ctx.clearRect(0,0,canvas.width,canvas.height)}};
 $('finish').onclick=async()=>{
   const s=current;if(!s||(s.observedMin??s.tracker.min)===null||s.saving)return;s.saving=true;$('finish').disabled=true;
   const min=s.observedMin??s.tracker.min,max=s.observedMax??s.tracker.max;const reps=s.mode==='Video file'?s.tracker.reps:s.workout.total+(s.workout.state==='complete'||s.workout.state==='rest'?0:s.tracker.reps);const row={setsCompleted:s.mode==='Video file'&&s.tracker.reps>=s.goal?1:s.workout.completed.length,setsPlanned:s.workout.config.sets,completedSets:s.workout.completed,timeline:s.timeline,range:s.tracker.range,id:crypto.randomUUID(),note:$('reflection').value.trim(),planId:plannedItem,date:new Date().toISOString(),mode:s.mode,side:s.side,exercise:s.exercise,goal:s.goal,seconds:s.mode==='Video file'&&s.analyzed?Math.round(video.duration):Math.floor(time(s)),min,max,reps};
