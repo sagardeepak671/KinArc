@@ -1,10 +1,16 @@
 import {initIdentity,logout} from './auth-service.mjs';
-import {initializeStore,createStore} from './account-store.mjs';
+import {initializeStore,createStore,store} from './account-store.mjs';
 let identity;const $=id=>document.getElementById(id);let started=false;
 async function start(user=null){
  if(started)return;started=true;
  try{
   await initializeStore(user?.uid||'');
+  if(user){store.setItem('kinarc.onboarding.done','yes')}
+  if(sessionStorage.getItem('kinarc.postLogin')==='home'){
+   sessionStorage.removeItem('kinarc.postLogin');
+   store.setItem('kinarc.onboarding.done','yes');
+   if(location.hash.startsWith('#profiles')||location.hash==='')location.hash='home';
+  }
   await import('./app.js');await import('./web-app.mjs');await import('./trial.mjs');await import('./product.mjs');await import('./account.mjs');
   document.body.classList.remove('booting');$('bootScreen').hidden=true;
   if(identity?.auth){let first=true;identity.f.onAuthStateChanged(identity.auth,next=>{if(first){first=false;return}if((next?.uid||'')!==(user?.uid||'')){window.kinarc?.stop();document.body.classList.add('booting');location.reload()}})}
