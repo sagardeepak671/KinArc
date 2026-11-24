@@ -218,7 +218,11 @@ $('addMember').onsubmit=e=>{
 };
 const pages={landing:'landing',library:'library',about:'about',privacy:'privacy',terms:'terms',settings:'settings',coach:'coach',details:'exerciseDetails',progress:'progress',plan:'plan',home:'studioHome',workbench:'workbench',journal:'journal',profiles:'profiles',help:'help'};
 function route(){
-  let page=location.hash.slice(1);if(page==='how'){page='landing';setTimeout(()=>{if(document.body.dataset.page==='landing')document.getElementById('howSection').scrollIntoView({behavior:'smooth'})},50)}if(!Object.hasOwn(pages,page))page=store.getItem('kinarc.onboarding.done')==='yes'?'home':'landing';document.body.dataset.page=page;
+  let page=location.hash.slice(1);if(page==='how'){page='landing';setTimeout(()=>{if(document.body.dataset.page==='landing')document.getElementById('howSection').scrollIntoView({behavior:'smooth'})},50)}
+  if(!Object.hasOwn(pages,page)){
+   page=store.getItem('kinarc.onboarding.done')==='yes'?'home':'landing';
+  }
+  document.body.dataset.page=page;
   if(current && page!=='workbench'){history.replaceState(null,'','#workbench');page='workbench';cue('Finish or discard this session before leaving practice.')}
   for(const [name,id] of Object.entries(pages))$(id).hidden=name!==page;
   for(const a of document.querySelectorAll('nav a')){if(a.hash==='#'+(page==='details'?'library':page))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')}

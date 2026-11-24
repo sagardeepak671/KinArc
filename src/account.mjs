@@ -5,7 +5,17 @@ import {setupSync} from './sync.mjs';
 const $=id=>document.getElementById(id),c=identity();
 $('accountIdentity').textContent=c?.user?`${c.user.displayName||'KinArc member'} · ${c.user.email||'Google account'}`:'Guest workspace · saved on this device';
 $('accountStatus').textContent=c?.user?'Signed in. Local workspace ready. Cloud synchronization is optional.':c?'Continue as a guest or sign in with Google.':'Google sign-in is unavailable. Guest features remain available.';
+if(c?.user){
+ $('welcomeName').textContent='Welcome back, '+(c.user.displayName||c.user.email||'KinArc member');
+ document.querySelectorAll('.owner').forEach(a=>a.textContent=c.user.displayName||c.user.email||'My account');
+}
 $('googleLogin').hidden=!!c?.user;$('googleLogin').disabled=!c;$('accountLogout').hidden=!c?.user;
+const headerAccount=$('headerAccount');
+if(headerAccount){
+ headerAccount.hidden=false;
+ headerAccount.textContent=c?.user?(c.user.displayName||c.user.email||'My account'):'Sign in';
+ headerAccount.onclick=()=>location.hash='profiles';
+}
 $('googleLogin').onclick=async()=>{if(window.kinarc?.active())return notify('Finish or discard your workout first.');$('googleLogin').disabled=true;try{await login()}catch(error){notify(error.code==='auth/unauthorized-domain'?'Authorize this hostname in Firebase Authentication settings.':error.code==='auth/popup-blocked'?'Allow the sign-in popup and retry.':'Sign-in cancelled or unavailable. Try again.');$('googleLogin').disabled=false}};
 $('accountLogout').onclick=async()=>{if(window.kinarc?.active())return notify('Finish or discard your workout first.');await database.flush();await logout();new BroadcastChannel('kinarc-identity').postMessage({type:'signout',uid:c.user.uid});location.reload()};
 

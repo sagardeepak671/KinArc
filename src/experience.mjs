@@ -1,5 +1,6 @@
 import {store} from './account-store.mjs';
 import {exercises as catalog} from './exercises.mjs';
+import {identity} from './auth-service.mjs';
 export {catalog};
 
 const day=d=>[d.getFullYear(),d.getMonth(),d.getDate()].join('-');
@@ -17,7 +18,10 @@ export function setupExperience({read,profile,select,refresh}){
  function update(){
   let rows;try{rows=read()}catch{rows=[]}
   const s=activitySummary(rows),goal=Number(store.getItem('kinarc.weeklyGoal.'+profile().id)||3);
-  $('welcomeName').textContent=profile().name==='My workshop'?'Ready for your next session?':'Welcome back, '+profile().name+'.';
+  const c=identity();
+  $('welcomeName').textContent=c?.user
+   ?'Welcome back, '+(c.user.displayName||c.user.email||'KinArc member')
+   :(profile().name==='My workshop'?'Ready for your next session?':'Welcome back, '+profile().name+'.');
   document.querySelector('.home-stats').hidden=s.tracked.length===0;$('weekDays').textContent=s.weekDays+' / '+goal;$('weekReps').textContent=s.weekReps;$('homeStreak').textContent=s.streak+(s.streak===1?' day':' days');
   $('weeklyGoal').value=String(goal);$('weekProgress').max=goal;$('weekProgress').value=Math.min(goal,s.weekDays);
   $('homeGoalNote').textContent=s.weekDays>=goal?'Weekly practice goal reached. Keep your next session comfortable.':(goal-s.weekDays)+' more practice day'+(goal-s.weekDays===1?'':'s')+' toward your weekly goal.';
