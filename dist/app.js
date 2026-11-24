@@ -41,7 +41,10 @@ function drawFullSkeleton(poseLandmarks,width,height){
   if(!poseLandmarks)return;
   ctx.clearRect(0,0,width,height);
   const points=poseLandmarks.map(p=>p&&p.visibility>=.45&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1?{x:p.x*width,y:p.y*height}:null);
-  const connections=window.POSE_CONNECTIONS||[[11,12],[11,13],[13,15],[12,14],[14,16],[11,23],[12,24],[23,24],[23,25],[25,27],[24,26],[26,28]];
+  const connections=[
+    [11,12],[11,13],[13,15],[12,14],[14,16],[11,23],[12,24],[23,24],
+    [23,25],[25,27],[24,26],[26,28],[27,29],[29,31],[28,30],[30,32]
+  ];
   ctx.lineCap='round';ctx.lineJoin='round';
   for(const [a,b] of connections){
     if(!points[a]||!points[b])continue;
@@ -49,7 +52,9 @@ function drawFullSkeleton(poseLandmarks,width,height){
     ctx.lineWidth=8*width/720;ctx.strokeStyle='#804833';ctx.stroke();
     ctx.lineWidth=4*width/720;ctx.strokeStyle='#dc9d70';ctx.stroke();
   }
-  for(const p of points.filter(Boolean)){
+  const visibleExercisePoints=[11,12,13,14,15,16,23,24,25,26,27,28,29,30,31,32]
+    .map(i=>points[i]).filter(Boolean);
+  for(const p of visibleExercisePoints){
     ctx.beginPath();ctx.arc(p.x,p.y,5*width/720,0,Math.PI*2);ctx.fillStyle='#ffcc92';ctx.fill();
   }
 }
