@@ -14,18 +14,10 @@ export const identity=()=>client;
 export async function login(options={}){
  const c=client;if(!c)throw Error('Account setup is unavailable.');
  const p=new c.f.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});
- if(options.redirect){
-  await c.f.signInWithRedirect(c.auth,p);
+ if(options.popup){
+  await c.f.signInWithPopup(c.auth,p);
   return;
  }
- try{
-  await c.f.signInWithPopup(c.auth,p);
- }catch(error){
-  if(['auth/popup-blocked','auth/popup-closed-by-user','auth/cancelled-popup-request'].includes(error.code)){
-   await c.f.signInWithRedirect(c.auth,p);
-   return;
-  }
-  throw error;
- }
+ await c.f.signInWithRedirect(c.auth,p);
 }
 export async function logout(){await client?.f.signOut(client.auth)}
